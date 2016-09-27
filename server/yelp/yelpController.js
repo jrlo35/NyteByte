@@ -4,10 +4,10 @@ var Yelp = require('yelp');
 var Event = require('../events/eventModel.js');
 
 var yelp = new Yelp({
-  consumer_key: 'XrFzdiNnx_d3yIqlzmwG6g',
-  consumer_secret: 'YIFLNTDrzekdfcsdFzXe8ygwBQ0',
-  token: 'xVbEwOuDIGQ6AZSs6oA7dS8VF8vyH5is',
-  token_secret: 'h4supFvwL9h447AldVkG-WbsXqU'
+  consumer_key: process.env.consumer_key,
+  consumer_secret: process.env.consumer_secret,
+  token: process.env.token,
+  token_secret: process.env.token_secret
 });
 
 // Set limit on how many results each IP can save

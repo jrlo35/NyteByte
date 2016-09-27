@@ -6,12 +6,20 @@
   angular
     .module('nytebyte.choices')
 	  .factory('Preference', function ($http, $routeParams) {
-	  	
-	    // in case business has no image associated with it on Yelp
-	    var defaultImagePath = '../../assets/default_business.jpg';
+
+	  	return {
+	      sendPreference: sendPreference,
+	      getChoices: getChoices,
+	      storeChoice: storeChoice,
+	      getEventDetails: getEventDetails,
+	      removeChoice: removeChoice,
+	      notInChoices: notInChoices,
+	      getDefaultImage: getDefaultImage,
+	      updateVotes: updateVotes
+	    };
 
 	    // get search results from Yelp
-	    var sendPreference = function (term) {
+	    function sendPreference(term) {
 	      return $http({
 	        method: 'Get',
 	        url: '/' + $routeParams.event_id + '/search',
@@ -19,7 +27,7 @@
 	      });
 	    };
 
-	    var getChoices = function () {
+	    function getChoices() {
 	      var choicesArray = [];
 	      return $http({
 	        method: 'Get',
@@ -27,7 +35,7 @@
 	      });
 	    };
 
-	    var storeChoice = function (business_id, index) {
+	    function storeChoice(business_id, index) {
 	      return $http({
 	        method: 'Post',
 	        url: '/' + $routeParams.event_id + '/store',
@@ -37,7 +45,7 @@
 	      });
 	    };
 
-	    var removeChoice = function (business_id) {
+	    function removeChoice(business_id) {
 	      return $http({
 	        method: 'Post',
 	        url: '/' + $routeParams.event_id + '/remove',
@@ -47,7 +55,7 @@
 	      });
 	    };
 
-	    var getEventDetails = function (cb) {
+	    function getEventDetails(cb) {
 	      $http({
 	          method: 'POST',
 	          url: '/' + $routeParams.event_id + '/details',
@@ -59,7 +67,7 @@
 	    };
 
 	    // update vote count
-	    var updateVotes = function (choice) {
+	    function updateVotes(choice) {
 	      return $http({
 	        method: 'POST',
 	        url: '/' + $routeParams.event_id + '/votes',
@@ -67,7 +75,7 @@
 	      });
 	    };
 
-	    var notInChoices = function (newChoice, choices) {
+	    function notInChoices(newChoice, choices) {
 	      for (var i = 0; i < choices.length; i++) {
 	        if (choices[i].id === newChoice.id) {
 	          return false;
@@ -76,19 +84,10 @@
 	      return true;
 	    };
 
-	    var getDefaultImage = function () {
-	      return defaultImagePath;
+	    function defaultImagePath() {
+	      return '../../assets/default_business.jpg';
 	    };
 
-	    return {
-	      sendPreference: sendPreference,
-	      getChoices: getChoices,
-	      storeChoice: storeChoice,
-	      getEventDetails: getEventDetails,
-	      removeChoice: removeChoice,
-	      notInChoices: notInChoices,
-	      getDefaultImage: getDefaultImage,
-	      updateVotes: updateVotes
-	    };
+	    
 	  });
 })();

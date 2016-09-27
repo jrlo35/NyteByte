@@ -5,7 +5,11 @@
   angular
     .module('nytebyte.event')
 		.factory('Events', function ($http) {
-		  var sendNewEvent = function (event) {
+
+			return {
+		    sendNewEvent: sendNewEvent
+		  };
+		  function sendNewEvent(event) {
 		    return $http({
 		        method: 'POST',
 		        url: '/create',
@@ -18,8 +22,6 @@
 		        return console.error('Error creating event data', err);
 		      });
 		  };
-		  return {
-		    sendNewEvent: sendNewEvent
-		  };
+		  
 		});
 })();

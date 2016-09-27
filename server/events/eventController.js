@@ -57,6 +57,7 @@ module.exports = {
       if (event) {
         var formattedIP = req.ip.split('.').join('-');
         var existingUser = false;
+        
         //check to see if that user ip already exist in db
         for (var i = 0; i < event.users.length; i++) {
           if (event.users[i].ip === formattedIP) {

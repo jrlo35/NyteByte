@@ -15,7 +15,18 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      ''''
+      './node_modules/angular/angular.js',
+      './node_modules/angular-mocks/angular-mocks.js',
+      './client/app/chat/chatController.js',
+      './client/app/choices/choiceController.js',
+      './client/app/event/eventController.js',
+      './client/app/chat/chatFactory.js',
+      './client/app/choices/choiceFactory.js',
+      './client/app/event/eventFactory.js',
+      './client/app.js',
+      './client/app/chat/chat.spec.js',
+      './client/app/choices/choices.spec.js',
+      './client/app/event/event.spec.js',
     ],
 
 

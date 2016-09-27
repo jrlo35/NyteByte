@@ -8,7 +8,9 @@ module.exports = {
     var radius = req.body.radius;
     var date = req.body.date;
     var time = req.body.time;
-    var event_id = randomWords({ exactly: 2 }).join(""); //generate two random word to make it as event_id
+
+    //generate two random word to make it as event_id
+    var event_id = randomWords({ exactly: 2 }).join(""); 
     var usersArray = [];
     usersArray.push({
       ip: req.ip.split('.').join('-'),
@@ -34,23 +36,25 @@ module.exports = {
           if (err) {
             return console.error(err);
           }
-          res.json(event); //send newly created event object to client
+          res.json(event); 
         });
-      } else { //if randomly generated event_id already exist within db on create event call
-        return this.newEvent(req, res); //re-run function to get new event_id;
+      } else { 
+
+        //if randomly generated event_id already exist within db on create event call
+        return this.newEvent(req, res); 
       }
     });
   },
   getEvent: function (req, res) {
+
     //when user connects with events_id url that's created
     var event_id = req.params.event_id;
-    //return data with same event_id
+    
     Event.findOne({ event_id: event_id }, function (err, event) {
       if (err) {
         return console.error('Error redirecting to event page', err);
       }
       if (event) {
-        //if event id is found
         var formattedIP = req.ip.split('.').join('-');
         var existingUser = false;
         //check to see if that user ip already exist in db
@@ -111,20 +115,23 @@ module.exports = {
     });
   },
   updateVotes: function (req, res) {
+
     var event_id = req.params.event_id;
     var index = req.body.index;
     var ip = req.ip.split('.').join('-');
     var business_id = req.body.id;
+
     Event.findOne({ event_id: event_id }, function (err, event) {
       if (err) {
         return console.error('Error finding event it on upvote', err);
       }
-      //if event id exists
+
       if (event) {
         event.choices.businesses.forEach(function (business) {
-          //increment vote count on specific business upvote click
+
           if (business.business_id === business_id) {
             business.votes = business.votes + 1;
+
             //if user ip already exist in specific business data
             //send back 302 Found status code and end
             //this is just for safety caution. User will not be able to click the upvote
@@ -132,6 +139,7 @@ module.exports = {
             if (business.ips.indexOf(ip) !== -1) {
               res.status(302).end();
             }
+
             //once upvote button is clicked, save user ip address to specific business they made
             else {
               business.ips.push(ip);

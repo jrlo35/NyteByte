@@ -8,6 +8,7 @@ var io = require('socket.io')(http);
 var eventController = require('./events/eventController.js');
 
 
+
 var port = process.env.PORT || 8000;
 //connect to heroku mongolab
 var uri = 'mongodb://testing:testing@ds017248.mlab.com:17248/heroku_pkxn9txr' || 'mongodb://localhost/brachiosaurus';
@@ -51,7 +52,8 @@ http.listen(port, function () {
   console.log('Listening on port ' + port);
 });
 
+//access app inside eventRoute and yelpRoutes
 module.exports = app;
-
 var eventRoute = require('./events/eventRoutes.js');
 var yelpRoutes = require('./yelp/yelpRoutes.js');
+

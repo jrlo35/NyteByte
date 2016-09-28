@@ -19,11 +19,13 @@
       $routeProvider
         .when('/', {
           templateUrl: 'app/event/event.html',
-          controller: 'EventController'
+          controller: 'EventController',
+          controllerAs: 'event'
         })
         .when('/:event_id', {
           templateUrl: 'app/choices/choices.html',
-          controller: 'PreferenceController'
+          controller: 'ChoiceController',
+          controllerAs: 'choice'
         });
 
       $locationProvider.html5Mode(true);

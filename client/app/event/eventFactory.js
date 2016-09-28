@@ -4,11 +4,17 @@
 
   angular
     .module('nytebyte.event')
-		.factory('Events', function ($http) {
+		.factory('Events', Events);
+		
+		Events.$inject = ['$http'];	
 
-			return {
+		function Events($http) {
+			var factory = {
 		    sendNewEvent: sendNewEvent
 		  };
+
+		  return factory; 
+		  
 		  function sendNewEvent(event) {
 		    return $http({
 		        method: 'POST',
@@ -23,5 +29,5 @@
 		      });
 		  };
 		  
-		});
+		};
 })();

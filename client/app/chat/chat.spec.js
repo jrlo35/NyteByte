@@ -22,25 +22,29 @@ describe('ChatController', function(){
 		expect(socket).toBeDefined();
 	});
 
-    describe('emit()', function(){
-    	var result;
-    	var message =  {
-          eventId: $scope.eventId,
-          name: $scope.username,
-          text: $scope.messageText
-        };
-    	beforeEach(function(){
-    		
-    		spyOn(socket, 'emit').and.callThrough();
-    	});
+	describe('factory methods should exist', function(){
+		it('should exist', function(){
+			expect(socket.on).toBeDefined();
+			expect(socket.emit).toBeDefined();
+		})
+	})
 
-    	it('should emit message', function(){
-    		var search = ;
-            socket.emit('send:message',message)
-            .then(function(res){
-            	result = res;
-            })
-    		expect(result.length).toBeDefined();
-    	});
-    })
+  describe('emit()', function(){
+  	var result;
+  	var message =  {
+        eventId: $scope.eventId,
+        name: $scope.username,
+        text: $scope.messageText
+      };
+  	
+
+  	it('should emit message', function(){
+  		var search = ;
+          socket.emit('send:message',message)
+          .then(function(res){
+          	result = res;
+          })
+  		expect(result.length).toBeDefined();
+  	});
+  })
 }) 

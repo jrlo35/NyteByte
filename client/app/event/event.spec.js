@@ -10,7 +10,7 @@ describe('EventController', function(){
 
 	beforeEach(inject(function(_$controller_, _Events_){
 		$controller = _$controller_;
-        Events = _Events_;
+    Events = _Events_;
 
 	}));
 
@@ -38,13 +38,15 @@ describe('EventController', function(){
           radius: 5,
           users: usersArray
         };
-    	
+    	it('should exist', function(){
+    		expect(Events.sendNewEvent).toBeDefined();
+    	})
 
     	it('should return new event', function(){
-            Events.sendNewEvent(event)
-            .then(function(res){
-            	result = res;
-            })
+        Events.sendNewEvent(event)
+        .then(function(res){
+        	result = res;
+        })
     		expect(result.event_id).toBeDefined();
     	});
     })

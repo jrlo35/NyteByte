@@ -1,19 +1,19 @@
 <h3 class="md-title" align="center">Comments</h3>
 <md-virtual-repeat-container id='vert-container'>
   <div class='messages'>
-    <div ng-repeat="message in messages">
-      <div class='bubble'>{{message.name}} : '{{message.text}}'</div>
+    <div ng-repeat="message in chat.messages">
+      <div class='bubble'>{{chat.message.name}} : '{{chat.message.text}}'</div>
     </div>
 </md-virtual-repeat-container>
 <div class='chatcontrols'>
-  <form name="chat" class="chatinput" ng-submit="sendMessage()">
+  <form name="chat" class="chatinput" ng-submit="chat.sendMessage()">
     <md-input-container>
       <label>Your Name</label>
-      <input ng-model='username' name='username' type='text'>
+      <input ng-model='chat.username' name='username' type='text'>
     </md-input-container>
     <md-input-container>
       <label>Leave A Message</label>
-      <input ng-model='messageText' name="messageText" type='text'>
+      <input ng-model='chat.messageText' name="messageText" type='text'>
     </md-input-container>
     <md-input-container>
       <md-button class="md-raised md-primary" type="submit">Send</md-button>

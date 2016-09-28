@@ -4,38 +4,45 @@
 
   angular
     .module('nytebyte.chat', [])
-    .controller('ChatController', function ($scope, socket) {
+    .controller('ChatController', ChatController);
+
+    ChatController.$inject = ['socket'];
+
+    function (socket) {
+
+      var vm = this;
       // binding for displayed chat messages
-      $scope.messages = [];
+      vm.messages = [];
+      vm.sendMessage = sendMessage;
 
       // initialize the chat with existing messages
       socket.on('init', function (data) {
-        $scope.messages = data.messages;
+        vm.messages = data.messages;
       });
 
       // add messages locally when received from server
       socket.on('send:message', function (message) {
-        if (message.eventId === $scope.eventId) {
-          $scope.messages.push(message);
+        if (message.eventId === vm.eventId) {
+          vm.messages.push(message);
         }
       });
 
-      $scope.sendMessage = function () {
+      function sendMessage() {
 
         // send message to server
         socket.emit('send:message', {
-          eventId: $scope.eventId,
-          name: $scope.username,
-          text: $scope.messageText
+          eventId: vm.eventId,
+          name: vm.username,
+          text: vm.messageText
         });
 
         // add the message to our model locally
-        $scope.messages.push({
-          name: $scope.username,
-          text: $scope.messageText
+        vm.messages.push({
+          name: vm.username,
+          text: vm.messageText
         });
         
-        $scope.messageText = '';
+        vm.messageText = '';
       };
-    });
+    };
 })();

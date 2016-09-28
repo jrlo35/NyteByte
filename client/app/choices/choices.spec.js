@@ -26,10 +26,7 @@ describe('PreferenceController', function(){
 
     describe('sendPreference()', function(){
     	var result;
-    	beforeEach(function(){
-    		
-    		spyOn(Preference, 'sendPreference').and.callThrough();
-    	});
+    	
 
     	it('should return 3 choices', function(){
     		var search = 'chinese';

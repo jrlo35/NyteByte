@@ -38,10 +38,7 @@ describe('EventController', function(){
           radius: 5,
           users: usersArray
         };
-    	beforeEach(function(){
-    		
-    		spyOn(Events, 'sendNewEvent').and.callThrough();
-    	});
+    	
 
     	it('should return new event', function(){
             Events.sendNewEvent(event)

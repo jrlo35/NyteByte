@@ -34,7 +34,7 @@
       return {
         restrict: 'E',
         controller: 'ChatController',
-        templateUrl: '/app/chat/chat.html'
+        templateUrl: '/app/chat/chatView.html'
       };
     });
 })();
